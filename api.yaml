@@ -20,7 +20,14 @@ paths:
         required: true
         schema:
           type: array
-          example: [{"id":"3","pingYing":"sān","meaning":"three","character":"三","examples":"三个","notes":""}]
+          example: [{
+            "id":"3",
+            "pingYing":"sān",
+            "meaning":"three",
+            "character":"三",
+            "traditionalCharacter":"",
+            "examples":"三个",
+            "notes":""}]
       responses:
         "200":
           description: Success

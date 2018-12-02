@@ -1,11 +1,10 @@
 import express from 'express';
-import { mongoCollection } from '../utils/mongo';
-import config from '../../config';
+import { chineseCollection } from '../utils/mongo';
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  mongoCollection(config.mongo.collectionName).find().toArray((err, results) => {
+  chineseCollection().find().toArray((err, results) => {
     if (err) {
       // eslint-disable-next-line no-console
       console.error('error encountered', err);

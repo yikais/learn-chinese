@@ -1,5 +1,6 @@
 import fs from 'fs';
 import { MongoClient } from 'mongodb';
+import config from '../../config';
 
 let database;
 
@@ -40,10 +41,14 @@ export function connect(url, mongoCert = '', login = '', password = '') {
 }
 
 
-export function mongoCollection(collectionName) {
+function mongoCollection(collectionName) {
   if (!collectionName || typeof collectionName !== 'string') {
     throw new Error('collectName is required');
   }
 
   return database.db().collection(collectionName);
+}
+
+export function chineseCollection() {
+  return mongoCollection(config.mongo.collectionName);
 }
