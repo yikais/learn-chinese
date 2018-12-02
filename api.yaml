@@ -1,0 +1,41 @@
+swagger: "2.0"
+info:
+  title: Learn Chinese Api
+  description: APIs for learning chinese
+  version: 1
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /addWord:
+    post:
+      summary: Path for adding a new word
+      tags:
+      - addWord
+      parameters:
+      - name: body
+        in: body
+        description: the data sent from front end
+        required: true
+        schema:
+          type: array
+          example: [{"id":"3","pingYing":"sān","meaning":"three","character":"三","examples":"三个","notes":""}]
+      responses:
+        "200":
+          description: Success
+  /getWord:
+    get:
+      summary: Path for getting all the words
+      tags:
+      - getWord
+      parameters:
+      - name: id
+        in: query
+        description: the particular ID to get
+        required: false
+        type: string
+        example: "2"
+      responses:
+        "200":
+          description: Success
