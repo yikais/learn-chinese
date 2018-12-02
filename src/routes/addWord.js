@@ -1,25 +1,50 @@
 import express from 'express';
-import config from '../../config';
-import { mongoCollection } from '../utils/mongo';
+import moment from 'moment';
+import { chineseCollection } from '../utils/mongo';
 
 const router = express.Router();
 
-router.post('/', (req, res, next) => {
-  // const { body } = req;
+router.post('/', async (req, res, next) => {
+  try {
+    const data = req.body;
 
-  mongoCollection(config.mongo.collectionName).save(req.body, (err, result) => {
-    if (err) {
-      // eslint-disable-next-line no-console
-      return console.log(err);
+    const newIds = data.map(({ id }) => id);
+    const existingIds = await chineseCollection().find({ id: { $in: newIds } }).toArray();
+
+    if (existingIds.length > 0) {
+      return res.status(500).json({
+        code: 'add.word.duplicate.entry',
+        message: 'An ID already exists in mongo',
+      });
     }
 
-    // eslint-disable-next-line no-console
-    console.log('what is result', result);
-    return result;
-  });
+    const dateAdded = moment().format();
 
-  res.send('New word added successfully');
-  next();
+    const updatedData = data.map(datum => ({
+      ...datum,
+      dateAdded,
+      dateModified: dateAdded,
+      timesTested: 0,
+      timesCorrect: 0,
+      timesIncorrect: 0,
+    }));
+
+    try {
+      await chineseCollection().insertMany(updatedData);
+    } catch ({ message }) {
+      return res.status(500).json({
+        code: 'add.word.mongo.fail',
+        message,
+      });
+    }
+
+    return res.send({
+      code: 'add.word.success',
+      message: 'add word success!',
+    });
+  } catch (e) {
+    return next(e);
+  }
 });
 
 export default router;
