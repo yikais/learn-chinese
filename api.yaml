@@ -31,7 +31,7 @@ paths:
       responses:
         "200":
           description: Success
-  /getWord:
+  /getWord/all:
     get:
       summary: Path for getting all the words
       tags:
@@ -43,6 +43,97 @@ paths:
         required: false
         type: string
         example: "2"
+      responses:
+        "200":
+          description: Success
+  /getWord/lastN:
+    get:
+      summary: Path for getting the last N words
+      tags:
+      - last N number of words
+      parameters:
+      - name: numberToFetch
+        in: query
+        description: the last number of words to fetch
+        required: true
+        type: integer
+        default: 10
+      - name: showPingYing
+        in: query
+        description: whether to show pingYing in the results
+        type: boolean
+        default: true
+      - name: showCharacter
+        in: query
+        description: whether to show the simplified Character in the results
+        type: boolean
+        default: false
+      - name: showTraditionalCharacter
+        in: query
+        description: whether to show the traditional character in the results
+        type: boolean
+        default: false
+      - name: showMeaning
+        in: query
+        description: whether to show the meaning of the word in the results
+        type: boolean
+        default: true
+      - name: showExample
+        in: query
+        description: whether to show examples of the word being used in the results
+        type: boolean
+        default: false
+      - name: showNotes
+        in: query
+        description: whether to show any notes in the results
+        type: boolean
+        default: true
+      responses:
+        "200":
+          description: Success
+  /getWord/randomN:
+    get:
+      summary: Path for getting a random N words
+      tags:
+      - random N number of words
+      parameters:
+      - name: numberToFetch
+        in: query
+        description: a random number of words to fetch
+        required: true
+        type: integer
+        default: 10
+        example: 10
+      - name: showPingYing
+        in: query
+        description: whether to show pingYing in the results
+        type: boolean
+        default: true
+      - name: showCharacter
+        in: query
+        description: whether to show the simplified Character in the results
+        type: boolean
+        default: false
+      - name: showTraditionalCharacter
+        in: query
+        description: whether to show the traditional character in the results
+        type: boolean
+        default: false
+      - name: showMeaning
+        in: query
+        description: whether to show the meaning of the word in the results
+        type: boolean
+        default: true
+      - name: showExample
+        in: query
+        description: whether to show examples of the word being used in the results
+        type: boolean
+        default: false
+      - name: showNotes
+        in: query
+        description: whether to show any notes in the results
+        type: boolean
+        default: true
       responses:
         "200":
           description: Success
