@@ -1,6 +1,6 @@
 {
   "name": "learn-chinese",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Just a way for me to learn chinese reading and writing",
   "main": "./src/index.js",
   "scripts": {
@@ -16,6 +16,7 @@
     "googleapis": "27",
     "moment": "^2.22.2",
     "mongodb": "^3.0.10",
+    "nodemon": "^1.18.7",
     "swagger-ui-dist": "^3.17.1",
     "yamljs": "^0.3.0"
   },
