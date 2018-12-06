@@ -20,6 +20,8 @@ function start() {
         resolve();
       });
     } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('Error encountered during startup', err);
       process.exit(1);
     }
   });
