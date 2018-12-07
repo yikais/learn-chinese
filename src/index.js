@@ -12,6 +12,7 @@ const server = express();
 function start() {
   return new Promise(async (resolve) => {
     try {
+      console.log('what is mongoUrl', mongoUrl)
       await connect(mongoUrl);
 
       server.listen(config.port, () => {
