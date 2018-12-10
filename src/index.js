@@ -12,6 +12,7 @@ const server = express();
 function start() {
   return new Promise(async (resolve) => {
     try {
+      console.log('what is mongoUrl', mongoUrl)
       await connect(mongoUrl);
 
       server.listen(config.port, () => {
@@ -20,6 +21,8 @@ function start() {
         resolve();
       });
     } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error('Error encountered during startup', err);
       process.exit(1);
     }
   });
