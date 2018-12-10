@@ -2,14 +2,16 @@
   "name": "learn-chinese",
   "version": "0.0.4",
   "description": "Just a way for me to learn chinese reading and writing",
-  "main": "./src/index.js",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node ./src/index.js",
+    "start": "nodemon --exec babel-node index.js",
     "lint": "eslint ./",
     "lint:fix": "eslint ./ --fix",
     "pre-commit": "npm run lint"
   },
   "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-polyfill": "^6.26.0",
     "body-parser": "^1.18.3",
     "dotenv-extended": "^2.3.0",
     "express": "^4.16.3",
