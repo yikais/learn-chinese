@@ -9,10 +9,10 @@ import { connect } from './utils/mongo';
 const mongoUrl = config.mongo.url;
 const server = express();
 
-function start() {
+// eslint-disable-next-line import/prefer-default-export
+export function start() {
   return new Promise(async (resolve) => {
     try {
-      console.log('what is mongoUrl', mongoUrl)
       await connect(mongoUrl);
 
       server.listen(config.port, () => {
@@ -29,8 +29,6 @@ function start() {
 }
 
 server.use(bodyParser.json());
-
-start();
 
 if (config.allowExplorer) {
   server.use(explorerRoute);

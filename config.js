@@ -1,7 +1,3 @@
-import dotenv from 'dotenv-extended';
-
-dotenv.config();
-
 module.exports = {
   mongo: {
     url: process.env.MONGO_URL,
