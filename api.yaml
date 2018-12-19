@@ -31,6 +31,27 @@ paths:
       responses:
         "200":
           description: Success
+  /deleteWord/removeFromReview:
+    post:
+      summary: Path for removing a word from the list of words to review
+      tags:
+      - removeFromReview
+      parameters:
+      - name: id
+        in: query
+        description: remove this ID from the list of words used for review
+        required: false
+        type: string
+        default: "8"
+      - name: character
+        in: query
+        description: the word to remove
+        required: false
+        type: string
+        default: ""
+      responses:
+        "200":
+          description: Success
   /getWord/all:
     get:
       summary: Path for getting all the words

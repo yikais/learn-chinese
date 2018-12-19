@@ -27,6 +27,7 @@ router.post('/', async (req, res, next) => {
       timesTested: 0,
       timesCorrect: 0,
       timesIncorrect: 0,
+      useForReview: true,
     }));
 
     try {
