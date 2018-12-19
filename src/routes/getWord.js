@@ -10,36 +10,40 @@ router.get('/all', async (req, res) => {
   res.send(allResult);
 });
 
-router.get('/lastN', async (req, res) => {
-  const {
-    numberToFetch,
-    showPingYing,
-    showCharacter,
-    showTraditionalCharacter,
-    showMeaning,
-    showExample,
-    showNotes,
-  } = req.query;
-  const fetchNum = parseInt(numberToFetch, 10);
-  const allRecordsCount = await chineseCollection().countDocuments();
+router.get('/lastN', async (req, res, next) => {
+  try {
+    const {
+      numberToFetch,
+      showPingYing,
+      showCharacter,
+      showTraditionalCharacter,
+      showMeaning,
+      showExample,
+      showNotes,
+    } = req.query;
+    const fetchNum = parseInt(numberToFetch, 10);
+    const allRecordsCount = await chineseCollection().countDocuments();
 
-  const lastNRecords = await chineseCollection()
-    .find()
-    .sort({ dateAdded: -1 })
-    .limit(fetchNum < allRecordsCount ? fetchNum : allRecordsCount)
-    .toArray();
+    const lastNRecords = await chineseCollection()
+      .find({ useForReview: true })
+      .sort({ dateAdded: -1 })
+      .limit(fetchNum < allRecordsCount ? fetchNum : allRecordsCount)
+      .toArray();
 
-  const modifiedResults = generateResult({
-    records: lastNRecords,
-    showPingYing,
-    showMeaning,
-    showCharacter,
-    showTraditionalCharacter,
-    showExample,
-    showNotes,
-  });
+    const modifiedResults = generateResult({
+      records: lastNRecords,
+      showPingYing,
+      showMeaning,
+      showCharacter,
+      showTraditionalCharacter,
+      showExample,
+      showNotes,
+    });
 
-  res.send(modifiedResults);
+    return res.send(modifiedResults);
+  } catch (err) {
+    return next(err);
+  }
 });
 
 router.get('/randomN', async (req, res) => {
@@ -55,11 +59,16 @@ router.get('/randomN', async (req, res) => {
   const fetchNum = parseInt(numberToFetch, 10);
 
   const randomNRecords = await chineseCollection()
-    .aggregate([{ $sample: { size: fetchNum } }])
+    .aggregate([
+      { $match: { useForReview: true } },
+      { $sample: { size: fetchNum } },
+    ])
     .toArray();
 
+  const filteredRecords = randomNRecords.filter(({ useForReview }) => useForReview === true);
+
   const modifiedResults = generateResult({
-    records: randomNRecords,
+    records: filteredRecords,
     showPingYing,
     showMeaning,
     showCharacter,

@@ -4,6 +4,7 @@ import config from '../config';
 import explorerRoute from './routes/explorer';
 import addWordRoute from './routes/addWord';
 import getWordRoute from './routes/getWord';
+import deleteWordRoute from './routes/deleteWord';
 import { connect } from './utils/mongo';
 
 const mongoUrl = config.mongo.url;
@@ -37,3 +38,5 @@ if (config.allowExplorer) {
 server.use('/addWord', addWordRoute);
 
 server.use('/getWord', getWordRoute);
+
+server.use('/deleteWord', deleteWordRoute);
