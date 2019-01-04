@@ -41,7 +41,7 @@ router.post('/', async (req, res, next) => {
 
     return res.send({
       code: 'add.word.success',
-      message: 'add word success!',
+      message: `IDs ${updatedData.map(({ id }) => id).join(', ')}, and words ${updatedData.map(({ character }) => character).join(', ')} added successfully`,
     });
   } catch (e) {
     return next(e);
