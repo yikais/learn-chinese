@@ -52,6 +52,21 @@ paths:
       responses:
         "200":
           description: Success
+  /deleteWord/removeWord:
+    post:
+      summary: Path for removing a word from the database by its index
+      tags:
+      - removeWord
+      parameters:
+      - name: id
+        in: query
+        description: remove this ID from the list of words in the database
+        required: true
+        type: string
+        default: "8"
+      responses:
+        "200":
+          description: Success
   /getWord/all:
     get:
       summary: Path for getting all the words

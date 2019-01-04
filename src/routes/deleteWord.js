@@ -28,4 +28,16 @@ router.post('/removeFromReview', async (req, res, next) => {
   }
 });
 
+router.post('/removeWord', async (req, res, next) => {
+  try {
+    const { id } = req.query;
+
+    const result = await chineseCollection().deleteOne({ id });
+
+    return res.send(result);
+  } catch (err) {
+    return next(err);
+  }
+});
+
 export default router;
