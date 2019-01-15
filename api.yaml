@@ -31,6 +31,32 @@ paths:
       responses:
         "200":
           description: Success
+  /addWord/search:
+    post:
+      summary: Path for searching for a word via the Line website
+      tags:
+      - search
+      parameters:
+      - name: body
+        in: body
+        description: the data sent from front end
+        required: true
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+            character:
+              type: string
+            notes:
+              type: string
+          example: {
+            "id":"3",
+            "character":"三",
+            "notes": ""}
+      responses:
+        "200":
+          description: Success
   /deleteWord/removeFromReview:
     post:
       summary: Path for removing a word from the list of words to review
