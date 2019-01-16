@@ -105,7 +105,7 @@ router.post('/simple', async (req, res, next) => {
 
       return res.send({
         code: 'add.word.search.success',
-        message: `ID: ${id} | Word: ${character} successfully added`,
+        message: `ID: ${id} | Word: ${character} | Meaning: ${updatedData.meaning} ==> successfully added`,
       });
     } catch ({ message }) {
       return res.status(500).json({
