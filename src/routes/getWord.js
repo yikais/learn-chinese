@@ -16,7 +16,6 @@ router.get('/lastN', async (req, res, next) => {
       numberToFetch,
       showPingYing,
       showCharacter,
-      showTraditionalCharacter,
       showMeaning,
       showExample,
       showNotes,
@@ -35,7 +34,6 @@ router.get('/lastN', async (req, res, next) => {
       showPingYing,
       showMeaning,
       showCharacter,
-      showTraditionalCharacter,
       showExample,
       showNotes,
     });
@@ -51,7 +49,6 @@ router.get('/randomN', async (req, res) => {
     numberToFetch,
     showPingYing,
     showCharacter,
-    showTraditionalCharacter,
     showMeaning,
     showExample,
     showNotes,
@@ -72,7 +69,6 @@ router.get('/randomN', async (req, res) => {
     showPingYing,
     showMeaning,
     showCharacter,
-    showTraditionalCharacter,
     showExample,
     showNotes,
   });

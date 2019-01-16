@@ -7,7 +7,7 @@ import { parseDictionaryResults } from '../utils/utils';
 
 const router = express.Router();
 
-router.post('/', async (req, res, next) => {
+router.post('/detailed', async (req, res, next) => {
   try {
     const data = req.body;
 
@@ -51,11 +51,18 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-router.post('/search', async (req, res, next) => {
+router.post('/simple', async (req, res, next) => {
   try {
     const { id, character, notes } = req.body;
 
-    // Decide what ID to use (latest from mongo+1 or what user inputs)
+    const existingIds = await chineseCollection().find({ id }).toArray();
+
+    if (existingIds.length > 0) {
+      return res.status(500).json({
+        code: 'add.word.duplicate.entry',
+        message: 'An ID already exists in mongo',
+      });
+    }
 
     const encodedChar = encodeURI(character);
     const { dictionaryHost } = config;
@@ -76,8 +83,8 @@ router.post('/search', async (req, res, next) => {
       const dateAdded = moment().format();
 
       const updatedData = {
-        ...parsedData,
         id,
+        ...parsedData,
         notes,
         dateAdded,
         dateModified: dateAdded,

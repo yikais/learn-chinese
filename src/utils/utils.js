@@ -7,7 +7,6 @@ export function generateResult({
   showPingYing,
   showMeaning,
   showCharacter,
-  showTraditionalCharacter,
   showExample,
   showNotes,
 }) {
@@ -16,7 +15,6 @@ export function generateResult({
     pingYing,
     meaning,
     character,
-    traditionalCharacter,
     examples,
     notes,
   }) => ({
@@ -24,7 +22,6 @@ export function generateResult({
     pingYing: testTrue(showPingYing) ? pingYing : '',
     meaning: testTrue(showMeaning) ? meaning : '',
     character: testTrue(showCharacter) ? character : '',
-    traditionalCharacter: testTrue(showTraditionalCharacter) ? traditionalCharacter : '',
     examples: testTrue(showExample) ? examples : '',
     notes: testTrue(showNotes) ? notes : '',
   }));

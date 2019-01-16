@@ -8,9 +8,9 @@ consumes:
 produces:
   - application/json
 paths:
-  /addWord:
+  /addWord/detailed:
     post:
-      summary: Path for adding a new word
+      summary: Path for adding a new word and all its details
       tags:
       - addWord
       parameters:
@@ -25,15 +25,14 @@ paths:
             "pingYing":"sān",
             "meaning":"three",
             "character":"三",
-            "traditionalCharacter":"",
             "examples":"三个",
             "notes":""}]
       responses:
         "200":
           description: Success
-  /addWord/search:
+  /addWord/simple:
     post:
-      summary: Path for searching for a word via the Line website
+      summary: Path for inputting a word and then fetch meta data via the Line website
       tags:
       - search
       parameters:
@@ -130,11 +129,6 @@ paths:
         description: whether to show the simplified Character in the results
         type: boolean
         default: false
-      - name: showTraditionalCharacter
-        in: query
-        description: whether to show the traditional character in the results
-        type: boolean
-        default: false
       - name: showMeaning
         in: query
         description: whether to show the meaning of the word in the results
@@ -174,11 +168,6 @@ paths:
       - name: showCharacter
         in: query
         description: whether to show the simplified Character in the results
-        type: boolean
-        default: false
-      - name: showTraditionalCharacter
-        in: query
-        description: whether to show the traditional character in the results
         type: boolean
         default: false
       - name: showMeaning
