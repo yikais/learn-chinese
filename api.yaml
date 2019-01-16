@@ -92,9 +92,9 @@ paths:
       responses:
         "200":
           description: Success
-  /getWord/all:
+  /getWord/id:
     get:
-      summary: Path for getting all the words
+      summary: Path for getting a particular id
       tags:
       - getWord
       parameters:
@@ -104,6 +104,14 @@ paths:
         required: false
         type: string
         example: "2"
+      responses:
+        "200":
+          description: Success          
+  /getWord/all:
+    get:
+      summary: Path for getting all the words
+      tags:
+      - getWord
       responses:
         "200":
           description: Success
