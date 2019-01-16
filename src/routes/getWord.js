@@ -10,6 +10,25 @@ router.get('/all', async (req, res) => {
   res.send(allResult);
 });
 
+router.get('/id', async (req, res, next) => {
+  const { id } = req.query;
+
+  try {
+    const record = await chineseCollection().find({ id }).toArray();
+
+    if (record.length <= 0) {
+      return res.status(404).json({
+        code: 'get.word.id.not.found',
+        message: 'The ID entered cannot be found',
+      });
+    }
+
+    return res.send(record);
+  } catch (e) {
+    return next(e);
+  }
+});
+
 router.get('/lastN', async (req, res, next) => {
   try {
     const {
