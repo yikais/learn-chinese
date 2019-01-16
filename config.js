@@ -5,4 +5,5 @@ module.exports = {
   },
   port: process.env.PORT,
   allowExplorer: process.env.ALLOW_EXPLORER,
+  dictionaryHost: 'https://ac.dict.naver.com/linedictweb/ac',
 };
