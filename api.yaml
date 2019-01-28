@@ -196,3 +196,26 @@ paths:
       responses:
         "200":
           description: Success
+  /submitTestResult:
+    post:
+      summary: Path for submitting when a word is correct or wrong
+      tags:
+      - submitTestResult
+      parameters:
+      - name: body
+        in: body
+        description: the ID of the word that was tested
+        required: true
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+            isCorrect:
+              type: boolean
+          example: {
+            "id":"3",
+            "isCorrect":true}
+      responses:
+        "200":
+          description: Success

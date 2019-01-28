@@ -5,6 +5,7 @@ import explorerRoute from './routes/explorer';
 import addWordRoute from './routes/addWord';
 import getWordRoute from './routes/getWord';
 import deleteWordRoute from './routes/deleteWord';
+import submitTestResultRoute from './routes/submitTestResult';
 import { connect } from './utils/mongo';
 
 const mongoUrl = config.mongo.url;
@@ -40,3 +41,5 @@ server.use('/addWord', addWordRoute);
 server.use('/getWord', getWordRoute);
 
 server.use('/deleteWord', deleteWordRoute);
+
+server.use('/submitTestResult', submitTestResultRoute);

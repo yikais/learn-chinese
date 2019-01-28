@@ -1,6 +1,6 @@
 {
   "name": "learn-chinese",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Just a way for me to learn chinese reading and writing",
   "main": "index.js",
   "scripts": {
